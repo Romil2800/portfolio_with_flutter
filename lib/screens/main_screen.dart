@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../utils/util.dart';
+import '../widgets/button_row.dart';
+import '../widgets/body.dart';
 import '../widgets/contactButton.dart';
 
 class Portfolio extends StatelessWidget {
@@ -34,7 +37,7 @@ class Portfolio extends StatelessWidget {
             buttonText: 'Contact me',
             icon: Icon(Icons.send_sharp),
             onPressed: () {
-              print('Hello world');
+              launchMailto();
             },
           ),
         ],
@@ -42,67 +45,21 @@ class Portfolio extends StatelessWidget {
       body: Stack(
         children: [
           Body(),
-        ],
-      ),
-    );
-  }
-}
-
-class Body extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Expanded(
-          flex: 1,
-          child: Container(
-            color: Colors.white,
-            child: Column(
-              children: [
-                Expanded(
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Opacity(
-                        opacity: 0.4,
-                        child: Image.asset('headshot.png'),
-                      ),
-                      Align(
-                        alignment: Alignment.topCenter,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'I \'m Romil.\nA Mobile Developer',
-                              style:
-                                  TextStyle(fontSize: 44.5, color: Colors.blue),
-                            ),
-                            Align(
-                              alignment: Alignment.center,
-                              child: ContactButton(
-                                buttonText: 'Drop me a line',
-                                icon: Icon(Icons.mail_outline),
-                                onPressed: () {},
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: EdgeInsets.only(
+                right: 100,
+                bottom: 48,
+              ),
+              child: SizedBox(
+                child: ButtomRow(),
+                height: 80,
+              ),
             ),
           ),
-        ),
-        Expanded(
-          child: Container(
-            color: Colors.white,
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
