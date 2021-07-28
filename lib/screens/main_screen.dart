@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/contactButton.dart';
 
 class Portfolio extends StatelessWidget {
   @override
@@ -29,32 +30,79 @@ class Portfolio extends StatelessWidget {
         ),
         backgroundColor: Colors.white,
         actions: [
-          Padding(
-            padding: EdgeInsets.all(10.0),
-            child: TextButton.icon(
-              style: TextButton.styleFrom(
-                textStyle: TextStyle(color: Colors.black12),
-                backgroundColor: Colors.amberAccent,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24.0),
-                ),
-              ),
-              onPressed: () {},
-              icon: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(Icons.send_sharp),
-              ),
-              label: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Contact me',
-                  style: TextStyle(color: Colors.black54),
-                ),
-              ),
-            ),
+          ContactButton(
+            buttonText: 'Contact me',
+            icon: Icon(Icons.send_sharp),
+            onPressed: () {
+              print('Hello world');
+            },
           ),
         ],
       ),
+      body: Stack(
+        children: [
+          Body(),
+        ],
+      ),
+    );
+  }
+}
+
+class Body extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Expanded(
+          flex: 1,
+          child: Container(
+            color: Colors.white,
+            child: Column(
+              children: [
+                Expanded(
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Opacity(
+                        opacity: 0.4,
+                        child: Image.asset('headshot.png'),
+                      ),
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'I \'m Romil.\nA Mobile Developer',
+                              style:
+                                  TextStyle(fontSize: 44.5, color: Colors.blue),
+                            ),
+                            Align(
+                              alignment: Alignment.center,
+                              child: ContactButton(
+                                buttonText: 'Drop me a line',
+                                icon: Icon(Icons.mail_outline),
+                                onPressed: () {},
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: Colors.white,
+          ),
+        ),
+      ],
     );
   }
 }
